@@ -89,26 +89,6 @@ This command:
 
 **Note**: Obfuscated code is harder to debug, so use the regular `build` command during development.
 
-## Deployment
-
-### GitHub Pages
-
-This project is configured to automatically deploy to GitHub Pages when you push to the `main` branch.
-
-**📖 For detailed deployment instructions, see [DEPLOYMENT.md](DEPLOYMENT.md)**
-
-#### Quick Setup
-
-1. Go to your repository **Settings** > **Pages**
-2. Set **Source** to **GitHub Actions**
-3. Push to `main` branch or manually trigger the workflow
-4. Your site will be live at: `https://<your-username>.github.io/wild_kingdom/`
-
-#### Manual Deployment
-
-You can trigger a deployment manually:
-- Go to **Actions** tab > "Deploy to GitHub Pages" > "Run workflow"
-
 ## License
 
 MIT License - feel free to use this project. Contributions are welcome!
