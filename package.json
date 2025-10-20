@@ -1,0 +1,30 @@
+{
+  "name": "wild_kingdom",
+  "version": "1.0.0",
+  "description": "An interactive web application showcasing Africa's Big Five animals with smooth animations",
+  "scripts": {
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html",
+    "build:obfuscated": "parcel build src/index.html --no-source-maps && javascript-obfuscator dist --output dist --options-preset high-obfuscation"
+  },
+  "keywords": [
+    "wildlife",
+    "animals",
+    "africa",
+    "big-five",
+    "interactive",
+    "animations"
+  ],
+  "author": "Francis Mule",
+  "license": "MIT",
+  "packageManager": "pnpm@10.18.3",
+  "devDependencies": {
+    "javascript-obfuscator": "^4.1.1",
+    "parcel": "^2.16.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@studio-freight/lenis": "^1.0.42",
+    "gsap": "^3.13.0"
+  }
+}
