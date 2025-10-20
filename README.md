@@ -95,29 +95,19 @@ This command:
 
 This project is configured to automatically deploy to GitHub Pages when you push to the `main` branch.
 
-#### First Time Setup
+**📖 For detailed deployment instructions, see [DEPLOYMENT.md](DEPLOYMENT.md)**
 
-1. Go to your repository settings on GitHub
-2. Navigate to **Settings** > **Pages**
-3. Under **Build and deployment**, set:
-   - **Source**: GitHub Actions
-4. Push to the `main` branch or manually trigger the workflow
-5. Your site will be available at: `https://<your-username>.github.io/<repository-name>/`
+#### Quick Setup
+
+1. Go to your repository **Settings** > **Pages**
+2. Set **Source** to **GitHub Actions**
+3. Push to `main` branch or manually trigger the workflow
+4. Your site will be live at: `https://<your-username>.github.io/wild_kingdom/`
 
 #### Manual Deployment
 
-You can also trigger a deployment manually:
-- Go to **Actions** tab in your GitHub repository
-- Select the "Deploy to GitHub Pages" workflow
-- Click "Run workflow"
-
-#### Deployment Workflow
-
-The GitHub Actions workflow automatically:
-- Installs dependencies using pnpm
-- Builds the project for production
-- Deploys to GitHub Pages
-- Adds a `.nojekyll` file to ensure proper asset loading
+You can trigger a deployment manually:
+- Go to **Actions** tab > "Deploy to GitHub Pages" > "Run workflow"
 
 ## License
 
