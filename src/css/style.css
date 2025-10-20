@@ -56,13 +56,15 @@ body::-webkit-scrollbar {
 
 /* Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  
+
   .gallery-scroller {
     animation: none !important;
   }
@@ -285,7 +287,7 @@ a.learn-more:hover {
 }
 
 .content-section {
-  max-width: 70vw;
+  max-width: min(70vw, 900px);
   margin: 4rem auto;
   padding: 2rem;
   text-align: center;
@@ -384,7 +386,6 @@ a.learn-more:hover {
   flex: 1 1 300px;
   max-width: 400px;
   transition: transform 0.3s ease;
-  will-change: transform; /* Optimize hover animations */
 }
 
 .gallery-item:hover {
@@ -697,7 +698,7 @@ a.learn-more:hover {
   margin-top: -2rem;
   position: relative;
   text-align: center;
-  max-width: 70vw;
+  max-width: min(70vw, 900px);
   margin-left: auto;
   margin-right: auto;
   padding: 2rem;
@@ -851,7 +852,7 @@ a.learn-more:hover {
 .elephant-banner .banner-content p {
   font-size: 1.3rem;
   margin-bottom: 2rem;
-  color: #070505;
+  color: #f0f0f0;
 }
 
 .elephant-banner .banner-stats {
@@ -877,7 +878,7 @@ a.learn-more:hover {
 
 .elephant-banner .stat p {
   font-size: 1rem;
-  color: #666;
+  color: #222;
   margin: 0;
 }
 
@@ -920,7 +921,11 @@ a.learn-more:hover {
 
 /* Lion Banner Styles */
 .lion-banner {
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(0, 0, 0, 0.3));
+  background: linear-gradient(
+    135deg,
+    rgba(212, 175, 55, 0.1),
+    rgba(0, 0, 0, 0.3)
+  );
   border: 3px solid #d4af37;
   border-radius: 20px;
   padding: 3rem;
@@ -937,7 +942,8 @@ a.learn-more:hover {
   left: 0;
   right: 0;
   bottom: 0;
-  background: url("https://images.pexels.com/photos/1598377/pexels-photo-1598377.jpeg") center/cover;
+  background: url("https://images.pexels.com/photos/1598377/pexels-photo-1598377.jpeg")
+    center/cover;
   opacity: 0.05;
   z-index: -1;
 }
@@ -1109,7 +1115,11 @@ a.learn-more:hover {
 
 /* Buffalo Banner Styles */
 .buffalo-banner {
-  background: linear-gradient(135deg, rgba(158, 138, 122, 0.8), rgba(0, 0, 0, 0.6));
+  background: linear-gradient(
+    135deg,
+    rgba(158, 138, 122, 0.8),
+    rgba(0, 0, 0, 0.6)
+  );
   border: 3px solid #9e8a7a;
   border-radius: 20px;
   padding: 3rem;
@@ -1120,13 +1130,14 @@ a.learn-more:hover {
 }
 
 .buffalo-banner::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('https://images.pexels.com/photos/618960/pexels-photo-618960.jpeg') center/cover;
+  background: url("https://images.pexels.com/photos/618960/pexels-photo-618960.jpeg")
+    center/cover;
   opacity: 0.1;
   z-index: -1;
 }
@@ -1172,7 +1183,11 @@ a.learn-more:hover {
 
 /* Fun Fact Styles for Buffalo */
 .buffalo-page .fun-fact {
-  background: linear-gradient(135deg, rgba(158, 138, 122, 0.1), rgba(0, 0, 0, 0.3));
+  background: linear-gradient(
+    135deg,
+    rgba(158, 138, 122, 0.1),
+    rgba(0, 0, 0, 0.3)
+  );
   border: 2px solid #9e8a7a;
   border-radius: 15px;
   padding: 2rem;
