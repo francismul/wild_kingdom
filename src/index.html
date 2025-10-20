@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wild Kingdom</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="apple-touch-icon" href="./images/apple-touch-icon.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./images/favicon-16x16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="./images/android-chrome-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="./images/android-chrome-512x512.png"
+    />
+  </head>
+  <body>
+    <div id="loader">
+      <div class="spinner"></div>
+    </div>
+    <div class="layout-switcher">
+      <button id="switch-to-vertical" class="active">Vertical Layout</button>
+      <button id="switch-to-horizontal">Horizontal Layout</button>
+    </div>
+
+    <main id="layout-vertical-scroll">
+      <section class="hero">
+        <h1>Wild Kingdom</h1>
+        <p>An interactive journey through the Big Five.</p>
+        <div class="scroll-down-arrow">↓</div>
+      </section>
+      <section class="animal-section" id="lion-v">
+        <div class="animal-content">
+          <h2>The Lion</h2>
+          <p>
+            The undisputed king of the savanna, known for its majestic mane and
+            powerful roar.
+          </p>
+          <a href="lion.html" class="learn-more">Learn More</a>
+        </div>
+      </section>
+      <section class="animal-section" id="leopard-v">
+        <div class="animal-content">
+          <h2>The Leopard</h2>
+          <p>
+            A master of stealth, this elusive predator is a symbol of agility
+            and grace.
+          </p>
+          <a href="leopard.html" class="learn-more">Learn More</a>
+        </div>
+      </section>
+      <section class="animal-section" id="rhino-v">
+        <div class="animal-content">
+          <h2>The Rhino</h2>
+          <p>A prehistoric giant with an armored hide and a formidable horn.</p>
+          <a href="rhino.html" class="learn-more">Learn More</a>
+        </div>
+      </section>
+      <section class="animal-section" id="elephant-v">
+        <div class="animal-content">
+          <h2>The Elephant</h2>
+          <p>
+            The world's largest land animal, possessing incredible intelligence
+            and memory.
+          </p>
+          <a href="elephant.html" class="learn-more">Learn More</a>
+        </div>
+      </section>
+      <section class="animal-section" id="buffalo-v">
+        <div class="animal-content">
+          <h2>The Cape Buffalo</h2>
+          <p>
+            A powerful and unpredictable herbivore, respected for its strength
+            and herd defense.
+          </p>
+          <a href="buffalo.html" class="learn-more">Learn More</a>
+        </div>
+      </section>
+    </main>
+
+    <main id="layout-horizontal-carousel" style="display: none">
+      <div class="carousel-container">
+        <div class="carousel-slide welcome-slide">
+          <div class="slide-content">
+            <h1>Wild Kingdom</h1>
+            <p>Click or drag to explore the Big Five.</p>
+          </div>
+        </div>
+        <div class="carousel-slide animal-slide" id="lion-h">
+          <div class="slide-content">
+            <h2>The Lion</h2>
+            <a href="lion.html" class="learn-more">View Details</a>
+          </div>
+        </div>
+        <div class="carousel-slide animal-slide" id="leopard-h">
+          <div class="slide-content">
+            <h2>The Leopard</h2>
+            <a href="leopard.html" class="learn-more">View Details</a>
+          </div>
+        </div>
+        <div class="carousel-slide animal-slide" id="rhino-h">
+          <div class="slide-content">
+            <h2>The Rhino</h2>
+            <a href="rhino.html" class="learn-more">View Details</a>
+          </div>
+        </div>
+        <div class="carousel-slide animal-slide" id="elephant-h">
+          <div class="slide-content">
+            <h2>The Elephant</h2>
+            <a href="elephant.html" class="learn-more">View Details</a>
+          </div>
+        </div>
+        <div class="carousel-slide animal-slide" id="buffalo-h">
+          <div class="slide-content">
+            <h2>The Cape Buffalo</h2>
+            <a href="buffalo.html" class="learn-more">View Details</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script type="module" src="./ts/main.ts"></script>
+  </body>
+</html>
