@@ -89,6 +89,36 @@ This command:
 
 **Note**: Obfuscated code is harder to debug, so use the regular `build` command during development.
 
+## Deployment
+
+### GitHub Pages
+
+This project is configured to automatically deploy to GitHub Pages when you push to the `main` branch.
+
+#### First Time Setup
+
+1. Go to your repository settings on GitHub
+2. Navigate to **Settings** > **Pages**
+3. Under **Build and deployment**, set:
+   - **Source**: GitHub Actions
+4. Push to the `main` branch or manually trigger the workflow
+5. Your site will be available at: `https://<your-username>.github.io/<repository-name>/`
+
+#### Manual Deployment
+
+You can also trigger a deployment manually:
+- Go to **Actions** tab in your GitHub repository
+- Select the "Deploy to GitHub Pages" workflow
+- Click "Run workflow"
+
+#### Deployment Workflow
+
+The GitHub Actions workflow automatically:
+- Installs dependencies using pnpm
+- Builds the project for production
+- Deploys to GitHub Pages
+- Adds a `.nojekyll` file to ensure proper asset loading
+
 ## License
 
 MIT License - feel free to use this project. Contributions are welcome!
