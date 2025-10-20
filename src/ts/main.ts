@@ -1,7 +1,7 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TextPlugin } from "gsap/TextPlugin";
-import Lenis from "@studio-freight/lenis";
+import Lenis from "lenis";
 
 // Register the GSAP plugins
 gsap.registerPlugin(ScrollTrigger, TextPlugin);
@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger, TextPlugin);
 // --- UTILITY FUNCTIONS ---
 const initSmoothScroll = (): Lenis => {
   const lenis = new Lenis();
-  lenis.on("scroll", ScrollTrigger.update);
+  lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add((time) => {
     lenis?.raf(time * 1000);
   });
@@ -76,20 +76,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
     animateSections(".content-section");
 
-    const scroller = document.querySelector(".gallery-scroller");
+    const scroller = document.querySelector(".gallery-scroller") as HTMLElement;
     if (scroller) {
       const images = gsap.utils.toArray(".gallery-scroller .gallery-image");
       images.forEach((image) => {
         const clone = (image as HTMLElement).cloneNode(true);
         scroller.appendChild(clone);
       });
-      const totalWidth = (scroller as HTMLElement).offsetWidth / 2;
-      gsap.to(scroller, {
+
+      // Optimize for performance
+      scroller.style.willChange = "transform";
+
+      const totalWidth = scroller.offsetWidth / 2;
+      const tween = gsap.to(scroller, {
         x: -totalWidth,
-        duration: 40,
+        duration: 60, // Slower, more gentle scroll
         ease: "none",
         repeat: -1,
+        paused: true, // Start paused
       });
+
+      // Use Intersection Observer to only animate when visible
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              tween.play();
+            } else {
+              tween.pause();
+            }
+          });
+        },
+        { threshold: 0.1 } // Trigger when 10% visible
+      );
+
+      observer.observe(scroller);
     }
   }
 

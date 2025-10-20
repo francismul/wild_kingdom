@@ -11,6 +11,8 @@ body {
   background-color: #121212;
   color: #f0f0f0;
   overscroll-behavior: none;
+  width: 100%;
+  overflow-x: hidden; /* Prevent horizontal scroll issues */
 }
 
 /* --- Scrollbar Hiding --- */
@@ -49,6 +51,22 @@ body::-webkit-scrollbar {
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .gallery-scroller {
+    animation: none !important;
   }
 }
 
@@ -269,7 +287,7 @@ a.learn-more:hover {
 }
 
 .content-section {
-  max-width: 900px;
+  max-width: min(70vw, 900px);
   margin: 4rem auto;
   padding: 2rem;
   text-align: center;
@@ -305,10 +323,11 @@ a.learn-more:hover {
   );
 }
 
-.gallery-scroller {
+.lion-gallery .gallery-scroller {
   display: flex;
   width: max-content; /* Let the container grow to fit all images */
   gap: 1rem;
+  will-change: transform; /* Optimize animation performance */
 }
 
 .gallery-scroller .gallery-image {
@@ -347,6 +366,232 @@ a.learn-more:hover {
   font-size: 1.2rem;
   margin: 0;
   color: #eae0d5;
+}
+
+/* Leopard Gallery Styles */
+.leopard-gallery {
+  margin: 4rem 0;
+  text-align: center;
+}
+
+.gallery-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.gallery-item {
+  flex: 1 1 300px;
+  max-width: 400px;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: scale(1.05);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px;
+}
+
+.gallery-item p {
+  padding: 1rem;
+  margin: 0;
+  font-size: 1rem;
+  color: #f0f0f0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* Video Container Styles */
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+  background: #000;
+  border-radius: 15px;
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.8), 0 10px 30px rgba(0, 0, 0, 0.5),
+    0 0 0 2px rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 215, 0, 0.3);
+}
+
+.video-container::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 215, 0, 0.1),
+    rgba(0, 0, 0, 0.2)
+  );
+  border-radius: 20px;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 13px;
+}
+
+/* Fun Fact Styles */
+.fun-fact {
+  background: linear-gradient(
+    135deg,
+    rgba(212, 175, 55, 0.1),
+    rgba(0, 0, 0, 0.3)
+  );
+  border: 2px solid #d4af37;
+  border-radius: 15px;
+  padding: 2rem;
+  margin: 4rem 0;
+  text-align: center;
+}
+
+.fun-fact blockquote {
+  font-size: 1.5rem;
+  font-style: italic;
+  color: #eae0d5;
+  margin: 0;
+  position: relative;
+}
+
+.fun-fact blockquote::before {
+  content: '"';
+  font-size: 3rem;
+  color: #d4af37;
+  position: absolute;
+  left: -20px;
+  top: -10px;
+}
+
+.fun-fact blockquote::after {
+  content: '"';
+  font-size: 3rem;
+  color: #d4af37;
+  position: absolute;
+  right: -20px;
+  bottom: -30px;
+}
+
+/* Rhino Banner Styles */
+.rhino-banner {
+  background: linear-gradient(
+    135deg,
+    rgba(139, 69, 19, 0.8),
+    rgba(0, 0, 0, 0.6)
+  );
+  border: 3px solid #8b4513;
+  border-radius: 20px;
+  padding: 3rem;
+  margin: 4rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.rhino-banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("https://images.pexels.com/photos/26841262/pexels-photo-26841262.jpeg")
+    center/cover;
+  opacity: 0.1;
+  z-index: -1;
+}
+
+.banner-content h2 {
+  color: #d4af37;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.banner-content p {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  color: #f0f0f0;
+}
+
+.banner-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.stat {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 2px solid #d4af37;
+  min-width: 150px;
+}
+
+.stat h3 {
+  font-size: 2rem;
+  color: #d4af37;
+  margin: 0 0 0.5rem 0;
+}
+
+.stat p {
+  font-size: 1rem;
+  color: #eae0d5;
+  margin: 0;
+}
+
+/* Rhino Gallery Styles */
+.rhino-gallery {
+  margin: 4rem 0;
+  text-align: center;
+}
+
+.rhino-gallery .gallery-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.rhino-gallery .gallery-item {
+  transition: transform 0.3s ease;
+}
+
+.rhino-gallery .gallery-item:hover {
+  transform: scale(1.03);
+}
+
+.rhino-gallery .gallery-item img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px;
+}
+
+.rhino-gallery .gallery-item p {
+  padding: 1rem;
+  margin: 0;
+  font-size: 1rem;
+  color: #f0f0f0;
+  background: rgba(0, 0, 0, 0.6);
 }
 
 /*
@@ -425,6 +670,7 @@ a.learn-more:hover {
   color: #e07a5f; /* Terracotta */
   text-transform: uppercase;
   letter-spacing: 1.5px;
+  text-align: center;
 }
 
 .rhino-page a {
@@ -449,14 +695,33 @@ a.learn-more:hover {
 .rhino-page .content-section {
   border: 4px solid #333;
   background: #4a4a4a;
-  margin-top: -2rem; /* Overlap the hero slightly */
+  margin-top: -2rem;
   position: relative;
+  text-align: center;
+  max-width: min(70vw, 900px);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2rem;
+  border-radius: 20px;
+}
+
+.rhino-page .content-section h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.rhino-page .content-section p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin: 0 auto 1rem auto;
+  max-width: 700px;
 }
 
 .rhino-page .fact-card {
   background: #555;
   border: 2px solid #333;
   color: #dcdcdc;
+  text-align: center;
 }
 
 .rhino-page .fact-card h3 {
@@ -480,14 +745,11 @@ a.learn-more:hover {
   font-family: "Raleway", sans-serif;
   color: #4a90e2; /* Calming blue */
   font-weight: 700;
+  text-align: center;
 }
 
 .elephant-page a {
   color: #4a90e2;
-}
-
-.elephant-page .page-footer {
-  background-color: #e1e8f0;
 }
 
 .elephant-page .hero-elephant {
@@ -513,6 +775,22 @@ a.learn-more:hover {
 .elephant-page .content-section {
   line-height: 1.9;
   padding: 3rem 2rem;
+  max-width: 70vw;
+  margin: 4rem auto;
+  text-align: center;
+  border-radius: 20px;
+}
+
+.elephant-page .content-section h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.elephant-page .content-section p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin: 0 auto 1rem auto;
+  max-width: 700px;
 }
 
 .elephant-page .wide-image {
@@ -529,10 +807,218 @@ a.learn-more:hover {
   background: #fff;
   border: 1px solid #d1dce5;
   color: #333;
+  text-align: center;
 }
 
 .elephant-page .fact-card h3 {
   color: #4a90e2;
+}
+
+.elephant-page .page-footer {
+  background-color: #e1e8f0;
+}
+
+/* Elephant Banner Styles */
+.elephant-banner {
+  /* background: linear-gradient(135deg, rgba(84, 84, 84, 0.1), rgba(52, 52, 52, 0.135)); */
+  background: #1615151d;
+  border-radius: 20px;
+  padding: 3rem;
+  margin: 4rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.elephant-banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("https://images.pexels.com/photos/68550/thailand-elephant-sunset-nature-68550.jpeg")
+    center/cover;
+  opacity: 0.05;
+  z-index: -1;
+}
+
+.elephant-banner .banner-content h2 {
+  color: #4a90e2;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.elephant-banner .banner-content p {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  color: #f0f0f0;
+}
+
+.elephant-banner .banner-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.elephant-banner .stat {
+  background: rgba(13, 13, 13, 0.449);
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 2px solid #4a90e2;
+  min-width: 150px;
+}
+
+.elephant-banner .stat h3 {
+  font-size: 2rem;
+  color: #4a90e2;
+  margin: 0 0 0.5rem 0;
+}
+
+.elephant-banner .stat p {
+  font-size: 1rem;
+  color: #222;
+  margin: 0;
+}
+
+/* Elephant Gallery Styles */
+.elephant-gallery {
+  margin: 4rem 0;
+  text-align: center;
+}
+
+.elephant-gallery .gallery-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.elephant-gallery .gallery-item {
+  transition: transform 0.3s ease;
+}
+
+.elephant-gallery .gallery-item:hover {
+  transform: scale(1.03);
+}
+
+.elephant-gallery .gallery-item img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px;
+}
+
+.elephant-gallery .gallery-item p {
+  padding: 1rem;
+  margin: 0;
+  font-size: 1rem;
+  color: #333;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* Lion Banner Styles */
+.lion-banner {
+  background: linear-gradient(
+    135deg,
+    rgba(212, 175, 55, 0.1),
+    rgba(0, 0, 0, 0.3)
+  );
+  border: 3px solid #d4af37;
+  border-radius: 20px;
+  padding: 3rem;
+  margin: 4rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.lion-banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("https://images.pexels.com/photos/1598377/pexels-photo-1598377.jpeg")
+    center/cover;
+  opacity: 0.05;
+  z-index: -1;
+}
+
+.lion-banner .banner-content h2 {
+  color: #d4af37;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.lion-banner .banner-content p {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  color: #eae0d5;
+}
+
+.lion-banner .banner-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.lion-banner .stat {
+  background: rgba(212, 175, 55, 0.1);
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 2px solid #d4af37;
+  min-width: 150px;
+}
+
+.lion-banner .stat h3 {
+  font-size: 2rem;
+  color: #d4af37;
+  margin: 0 0 0.5rem 0;
+}
+
+.lion-banner .stat p {
+  font-size: 1rem;
+  color: #666;
+  margin: 0;
+}
+
+/* Lion Fun Facts Grid */
+.fun-facts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.fun-fact-item {
+  background: rgba(212, 175, 55, 0.1);
+  border: 2px solid #d4af37;
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.fun-fact-item:hover {
+  transform: translateY(-5px);
+  background: rgba(212, 175, 55, 0.15);
+}
+
+.fun-fact-item h3 {
+  color: #d4af37;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.fun-fact-item p {
+  color: #eae0d5;
+  font-size: 1.1rem;
+  line-height: 1.6;
 }
 
 /*
@@ -572,9 +1058,9 @@ a.learn-more:hover {
 }
 
 .buffalo-page .content-section {
-  max-width: 100%;
-  padding-left: 0;
-  padding-right: 0;
+  max-width: 70vw;
+  margin: 4rem auto;
+  padding: 2rem;
 }
 
 .buffalo-gallery {
@@ -582,12 +1068,14 @@ a.learn-more:hover {
   padding: 0;
   overflow: hidden;
   position: relative;
+  touch-action: pan-x; /* Enable horizontal touch scrolling */
 }
 
 .buffalo-gallery .gallery-scroller {
   display: flex;
   width: calc(400px * 8); /* 4 images * 2 for duplication */
   animation: scroll 30s linear infinite;
+  will-change: transform; /* Optimize animation performance */
 }
 
 .gallery-image {
@@ -623,4 +1111,112 @@ a.learn-more:hover {
 
 .buffalo-gallery:hover .gallery-scroller {
   animation-play-state: paused;
+}
+
+/* Buffalo Banner Styles */
+.buffalo-banner {
+  background: linear-gradient(
+    135deg,
+    rgba(158, 138, 122, 0.8),
+    rgba(0, 0, 0, 0.6)
+  );
+  border: 3px solid #9e8a7a;
+  border-radius: 20px;
+  padding: 3rem;
+  margin: 4rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.buffalo-banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("https://images.pexels.com/photos/618960/pexels-photo-618960.jpeg")
+    center/cover;
+  opacity: 0.1;
+  z-index: -1;
+}
+
+.buffalo-banner .banner-content h2 {
+  color: #9e8a7a;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.buffalo-banner .banner-content p {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  color: #e0e0e0;
+}
+
+.buffalo-banner .banner-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.buffalo-banner .stat {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 2px solid #9e8a7a;
+  min-width: 150px;
+}
+
+.buffalo-banner .stat h3 {
+  font-size: 2rem;
+  color: #9e8a7a;
+  margin: 0 0 0.5rem 0;
+}
+
+.buffalo-banner .stat p {
+  font-size: 1rem;
+  color: #ccc;
+  margin: 0;
+}
+
+/* Fun Fact Styles for Buffalo */
+.buffalo-page .fun-fact {
+  background: linear-gradient(
+    135deg,
+    rgba(158, 138, 122, 0.1),
+    rgba(0, 0, 0, 0.3)
+  );
+  border: 2px solid #9e8a7a;
+  border-radius: 15px;
+  padding: 2rem;
+  margin: 4rem 0;
+  text-align: center;
+}
+
+.buffalo-page .fun-fact blockquote {
+  font-size: 1.5rem;
+  font-style: italic;
+  color: #e0e0e0;
+  margin: 0;
+  position: relative;
+}
+
+.buffalo-page .fun-fact blockquote::before {
+  content: '"';
+  font-size: 3rem;
+  color: #9e8a7a;
+  position: absolute;
+  left: -20px;
+  top: -10px;
+}
+
+.buffalo-page .fun-fact blockquote::after {
+  content: '"';
+  font-size: 3rem;
+  color: #9e8a7a;
+  position: absolute;
+  right: -20px;
+  bottom: -30px;
 }
