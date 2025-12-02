@@ -1,43 +1,96 @@
-# Astro Starter Kit: Minimal
+# Wild Kingdom
 
-```sh
-npm create astro@latest -- --template minimal
+An Astro-powered static site showcasing Africa's Big Five with smooth transitions, PWA support, and responsive design.
+
+Live site: `https://francismul.github.io/wild_kingdom/`
+
+## Tech Stack
+
+- Astro 5 with React integration
+- Tailwind CSS 4 (via `@tailwindcss/vite`)
+- PWA via `@vite-pwa/astro`
+- Image optimization with `sharp`
+
+## Prerequisites
+
+- Node.js 20+ (recommended)
+- npm 9+
+
+## Local Development
+
+```zsh
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Open `http://localhost:4321`.
 
-## 🚀 Project Structure
+## Build
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```zsh
+npm run build
+# or, to obfuscate client JS in production builds
+npm run build:obfuscated
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Output is written to `dist/`.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Deploy to GitHub Pages
 
-Any static assets, like images, can be placed in the `public/` directory.
+This repo ships with an Actions workflow at `.github/workflows/deploy.yml` that:
+- Installs dependencies and builds the site
+- Uploads `dist/` as the Pages artifact
+- Deploys to GitHub Pages
 
-## 🧞 Commands
+Steps to enable:
+1. Push to `main` (or run the workflow manually).
+2. In GitHub → Repository → Settings → Pages, set Source to “GitHub Actions”.
+3. The site publishes to `https://francismul.github.io/wild_kingdom/`.
 
-All commands are run from the root of the project, from a terminal:
+### Path Base and Site
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+This project is configured for a repository-based GitHub Pages URL:
+- `astro.config.mjs` sets `site: 'https://francismul.github.io'` and `base: '/wild_kingdom'`.
+- PWA `manifest` uses `scope` and `start_url` of `/wild_kingdom/`.
+- Public asset links in layout use `import.meta.env.BASE_URL` so icons and splash screens resolve under the base from any route.
 
-## 👀 Want to learn more?
+If you fork/rename the repo, update `base` to match: `'/<your-repo-name>'`.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Project Structure
+
+```
+astro.config.mjs
+package.json
+public/
+	splash_screens/
+src/
+	assets/
+	components/
+	data/
+	layouts/
+	pages/
+	styles/
+	utils/
+```
+
+Key files:
+- `src/layouts/Layout.astro`: global head tags, icons, splash screens, router transitions.
+- `src/pages/*.astro`: top-level routes (including dynamic `[animal].astro`).
+- `astro.config.mjs`: integrations, PWA config, and GitHub Pages base/site.
+
+## PWA Notes
+
+- Register type is `autoUpdate`.
+- Service worker and manifest paths are base-aware; they will resolve under `/wild_kingdom/`.
+- Offline caching targets `**/*.{js,css,html,ico,png,svg,webp}`.
+
+## Useful Commands
+
+- `npm run dev`: start the dev server
+- `npm run build`: build to `dist/`
+- `npm run preview`: preview the production build
+- `npm run build:obfuscated`: production build with JS obfuscation
+
+## License
+
+See `LICENSE` for details.
