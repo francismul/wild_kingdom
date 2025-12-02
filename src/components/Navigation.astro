@@ -1,0 +1,28 @@
+---
+import { animals } from '../data/animals';
+---
+
+<nav class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50">
+  <div class="flex items-center gap-2 px-4 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-full shadow-2xl">
+    <a 
+      href="/" 
+      class="p-2 rounded-full hover:bg-white/20 transition-colors duration-300 text-white/80 hover:text-white"
+      aria-label="Home"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    </a>
+    <div class="w-px h-6 bg-white/20 mx-1"></div>
+    {animals.map(animal => (
+      <a 
+        href={`/${animal.slug}`}
+        class="relative group p-2 rounded-full hover:bg-white/20 transition-colors duration-300"
+        aria-label={animal.name}
+      >
+        <span class="text-xs font-medium text-white/80 group-hover:text-white transition-colors">{animal.name.charAt(0)}</span>
+        <span class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 px-2 py-1 bg-black/80 text-white text-[10px] rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">
+          {animal.name}
+        </span>
+      </a>
+    ))}
+  </div>
+</nav>

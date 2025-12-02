@@ -1,0 +1,41 @@
+---
+import type { Animal } from '../data/animals';
+import { Image } from 'astro:assets';
+
+interface Props {
+  animal: Animal;
+  class?: string;
+}
+
+const { animal, class: className } = Astro.props;
+---
+
+<a href={`/${animal.slug}`} class:list={["animal-card group relative block overflow-hidden rounded-3xl h-full w-full bg-gray-900", className]}>
+  <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent z-10 opacity-80 group-hover:opacity-60 transition-opacity duration-500"></div>
+  
+  <Image 
+    src={animal.images.hero} 
+    alt={animal.name}
+    width={800}
+    height={1000}
+    widths={[400, 800, 1200]}
+    sizes="(max-width: 768px) 100vw, 50vw"
+    class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000 ease-out will-change-transform grayscale group-hover:grayscale-0"
+    decoding="async"
+  />
+  
+  <div class="absolute bottom-0 left-0 w-full p-8 z-20 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+    <div class="overflow-hidden">
+        <h3 class="text-4xl md:text-5xl font-heading font-bold text-white mb-2 leading-tight tracking-tighter translate-y-0 transition-transform duration-500">{animal.name}</h3>
+    </div>
+    <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-in-out">
+        <div class="overflow-hidden">
+            <p class="text-base text-gray-300 font-light leading-relaxed pt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">{animal.description}</p>
+             <div class="mt-4 flex items-center gap-2 text-sm font-medium text-white/80">
+                <span>Explore</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </div>
+        </div>
+    </div>
+  </div>
+</a>

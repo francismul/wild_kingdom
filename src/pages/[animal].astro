@@ -1,0 +1,221 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { animals } from '../data/animals';
+import { Image } from 'astro:assets';
+
+export function getStaticPaths() {
+  return animals.map(animal => ({
+    params: { animal: animal.slug },
+    props: { animal },
+  }));
+}
+
+const { animal } = Astro.props;
+const nextAnimalIndex = (animals.findIndex(a => a.slug === animal.slug) + 1) % animals.length;
+const nextAnimal = animals[nextAnimalIndex];
+---
+
+<Layout title={`${animal.title} - Wild Kingdom`}>
+    <!-- Hero Parallax -->
+    <header class="relative h-screen w-full overflow-hidden">
+        <div class="absolute inset-0 parallax-bg h-[120%] -top-[10%]">
+             <Image 
+                src={animal.images.hero} 
+                alt={animal.name}
+                width={1920}
+                height={1200}
+                widths={[640, 1024, 1400, 1920]}
+                sizes="100vw"
+                class="w-full h-full object-cover"
+                loading="eager"
+                decoding="async"
+            />
+        </div>
+        <div class="absolute inset-0 bg-linear-to-b from-black/30 via-transparent to-black/90"></div>
+        <div class="absolute inset-0 flex flex-col justify-center items-center text-center z-10 p-4">
+            <span class="text-amber-500 tracking-[0.5em] uppercase text-sm font-bold mb-4 parallax-text">{animal.title}</span>
+            <h1 class="text-6xl md:text-9xl font-heading font-black text-white mb-6 tracking-tighter parallax-text leading-none">{animal.name}</h1>
+            <p class="text-xl md:text-2xl font-light text-gray-200 parallax-text max-w-2xl mx-auto">{animal.description}</p>
+        </div>
+        <div class="absolute bottom-12 left-1/2 -translate-x-1/2 text-white/50 animate-bounce flex flex-col items-center gap-2">
+            <span class="text-xs uppercase tracking-widest">Scroll</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <div class="bg-black text-gray-200 relative z-20 -mt-20 rounded-t-[3rem] border-t border-white/10 shadow-[0_-20px_60px_rgba(0,0,0,0.8)]">
+        <div class="max-w-5xl mx-auto px-6 py-24 space-y-32">
+            
+            <!-- Intro -->
+            <section class="reveal-text text-center max-w-3xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-heading text-white mb-8 leading-tight">A Symbol of <span class="text-amber-500">Power</span> & Majesty</h2>
+                <p class="text-xl md:text-2xl leading-relaxed font-light text-gray-400 text-justify">{animal.details.intro}</p>
+            </section>
+
+            <!-- Stats Grid -->
+            <section class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 reveal-up">
+                {animal.details.facts.map(fact => (
+                    <div class="border border-white/10 p-8 rounded-2xl bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-colors group">
+                        <h3 class="text-xs uppercase tracking-widest text-amber-500 mb-3 group-hover:text-amber-400 transition-colors">{fact.label}</h3>
+                        <p class="text-3xl md:text-4xl font-heading font-bold text-white group-hover:scale-105 transition-transform origin-left">{fact.value}</p>
+                    </div>
+                ))}
+            </section>
+
+            <!-- Social -->
+            <section class="grid md:grid-cols-2 gap-16 items-center reveal-up">
+                <div class="order-2 md:order-1">
+                    <h2 class="text-4xl font-heading text-white mb-6">Social Structure</h2>
+                    <p class="text-lg leading-relaxed text-gray-400">{animal.details.social}</p>
+                </div>
+                 <div class="relative h-[500px] rounded-2xl overflow-hidden group order-1 md:order-2">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors z-10"></div>
+                    <Image 
+                        src={animal.images.gallery[0]} 
+                        alt="Social behavior"
+                        width={800}
+                        height={600}
+                        widths={[400, 800]}
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                </div>
+            </section>
+
+            <!-- Hunting -->
+             <section class="grid md:grid-cols-2 gap-16 items-center reveal-up">
+                 <div class="relative h-[500px] rounded-2xl overflow-hidden group">
+                     <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors z-10"></div>
+                    <Image 
+                        src={animal.images.gallery[1]} 
+                        alt="Hunting behavior"
+                        width={800}
+                        height={600}
+                        widths={[400, 800]}
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                </div>
+                <div>
+                    <h2 class="text-4xl font-heading text-white mb-6">Hunting & Diet</h2>
+                    <p class="text-lg leading-relaxed text-gray-400">{animal.details.hunting}</p>
+                </div>
+            </section>
+
+             <!-- Video if available -->
+             {animal.video && (
+                <section class="w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10 reveal-scale relative group">
+                     <iframe
+                        width="100%"
+                        height="100%"
+                        src={animal.video}
+                        title={`${animal.name} Video`}
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen
+                        class="w-full h-full pointer-events-auto"
+                      ></iframe>
+                </section>
+             )}
+
+             <!-- Gallery -->
+             <section class="reveal-up">
+                <h2 class="text-4xl font-heading text-white mb-12 text-center">Gallery</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 h-[800px] md:h-[600px]">
+                    {animal.images.gallery.map((img, i) => (
+                        <div class={`relative overflow-hidden rounded-xl group border border-white/10 ${i === 0 ? 'col-span-2 row-span-2' : 'col-span-1 row-span-1'}`}>
+                             <Image 
+                                src={img} 
+                                alt="Gallery image"
+                                width={800}
+                                height={600}
+                                widths={[400, 800]}
+                                sizes="(max-width: 768px) 50vw, 25vw"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                            />
+                        </div>
+                    ))}
+                </div>
+             </section>
+             
+             <!-- Next Animal -->
+             <section class="pt-24 pb-12 flex justify-center">
+                <a href={`/${nextAnimal.slug}`} class="group relative inline-flex items-center gap-4 text-white overflow-hidden rounded-full px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/20 transition-all duration-300">
+                    <div class="flex flex-col items-start z-10">
+                        <span class="text-xs uppercase tracking-widest text-gray-500 mb-1">Next Encounter</span>
+                        <span class="text-2xl font-heading font-bold group-hover:text-amber-500 transition-colors">{nextAnimal.name} &rarr;</span>
+                    </div>
+                    <div class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></div>
+                </a>
+             </section>
+        </div>
+    </div>
+</Layout>
+
+<script>
+    import { gsap } from 'gsap';
+    import { ScrollTrigger } from 'gsap/ScrollTrigger';
+    
+    document.addEventListener('astro:page-load', () => {
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Parallax Hero
+        gsap.to('.parallax-bg', {
+            yPercent: 30,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: 'header',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: true
+            }
+        });
+
+         gsap.to('.parallax-text', {
+            y: 100,
+            opacity: 0,
+            ease: 'power1.in',
+            stagger: 0.1,
+            scrollTrigger: {
+                trigger: 'header',
+                start: 'top top',
+                end: '60% top',
+                scrub: true
+            }
+        });
+
+        // Reveal Animations
+        const reveals = document.querySelectorAll('.reveal-up');
+        reveals.forEach(el => {
+            gsap.fromTo(el, 
+                { y: 50, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 1,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 85%',
+                        toggleActions: 'play none none reverse'
+                    }
+                }
+            );
+        });
+        
+        gsap.fromTo('.reveal-scale',
+            { scale: 0.95, opacity: 0 },
+            {
+                scale: 1,
+                opacity: 1,
+                duration: 1,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '.reveal-scale',
+                    start: 'top 80%',
+                }
+            }
+        );
+    });
+</script>

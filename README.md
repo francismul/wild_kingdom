@@ -1,94 +1,43 @@
-# Wild Kingdom - Interactive Animal Showcase
+# Astro Starter Kit: Minimal
 
-An immersive web application showcasing the Big Five African animals with smooth animations and interactive galleries.
-
-## Features
-
-- **Interactive Landing Page**: Choose between vertical scroll and horizontal carousel layouts
-- **Individual Animal Pages**: Dedicated pages for Lion, Leopard, Rhino, Elephant, and Cape Buffalo
-- **Smooth Animations**: Powered by GSAP and Lenis for buttery-smooth scrolling
-- **Autoscrolling Galleries**: Automatic image carousels with pause-on-hover functionality
-- **Responsive Design**: Optimized for all screen sizes
-- **Loading Animations**: Elegant loading spinners for enhanced user experience
-
-## Technologies Used
-
-- **TypeScript**: For type-safe JavaScript development
-- **GSAP**: High-performance animation library
-- **Lenis**: Smooth scrolling library
-- **Parcel**: Zero-configuration bundler
-- **SCSS/CSS**: Modern styling with custom properties
-
-## Project Structure
-
-```
-src/
-├── index.html          # Main landing page
-├── css/
-│   └── style.css       # Global styles and animations
-├── ts/
-│   └── main.ts         # Main application logic and animations
-├── [animal].html       # Individual animal detail pages
-└── assets/             # Images and other assets
+```sh
+npm create astro@latest -- --template minimal
 ```
 
-## Development
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-### Prerequisites
+## 🚀 Project Structure
 
-- Node.js (v16 or higher)
-- pnpm package manager
+Inside of your Astro project, you'll see the following folders and files:
 
-### Installation
-
-```bash
-# Install dependencies
-pnpm install
-
-# Start development server
-pnpm start
-
-# Build for production (regular)
-pnpm run build
-
-# Build for production with JavaScript obfuscation
-pnpm run build:obfuscated
+```text
+/
+├── public/
+├── src/
+│   └── pages/
+│       └── index.astro
+└── package.json
 ```
 
-## Browser Support
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
-- Chrome 80+
-- Firefox 75+
-- Safari 13+
-- Edge 80+
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
-## Performance Optimizations
+Any static assets, like images, can be placed in the `public/` directory.
 
-- **Tree Shaking**: Unused code is automatically removed during build
-- **Code Splitting**: JavaScript is split into optimized chunks
-- **Image Optimization**: Images are automatically optimized by Parcel
-- **CSS Minification**: Styles are minified for production
-- **Lazy Loading**: Animations trigger based on scroll position
+## 🧞 Commands
 
-## Security Features
+All commands are run from the root of the project, from a terminal:
 
-### JavaScript Obfuscation
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-For production deployments where code protection is important, use the obfuscated build:
+## 👀 Want to learn more?
 
-```bash
-pnpm run build:obfuscated
-```
-
-This command:
-
-- Builds the project without source maps
-- Applies high-level JavaScript obfuscation using `javascript-obfuscator`
-- Makes the code difficult to read and reverse-engineer
-- Maintains functionality while protecting intellectual property
-
-**Note**: Obfuscated code is harder to debug, so use the regular `build` command during development.
-
-## License
-
-MIT License - feel free to use this project. Contributions are welcome!
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
