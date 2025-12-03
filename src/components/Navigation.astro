@@ -1,11 +1,14 @@
 ---
 import { animals } from '../data/animals';
----
 
-<nav class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50">
+const base = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : import.meta.env.BASE_URL + '/';
+---
+<nav id="main-nav" class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ease-in-out translate-y-0 opacity-100">
   <div class="flex items-center gap-2 px-4 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-full shadow-2xl">
     <a 
-      href="/" 
+        href={base} 
       class="p-2 rounded-full hover:bg-white/20 transition-colors duration-300 text-white/80 hover:text-white"
       aria-label="Home"
     >
@@ -14,7 +17,7 @@ import { animals } from '../data/animals';
     <div class="w-px h-6 bg-white/20 mx-1"></div>
     {animals.map(animal => (
       <a 
-        href={`/${animal.slug}`}
+          href={`${base}${animal.slug}/`}
         class="relative group p-2 rounded-full hover:bg-white/20 transition-colors duration-300"
         aria-label={animal.name}
       >
@@ -26,3 +29,62 @@ import { animals } from '../data/animals';
     ))}
   </div>
 </nav>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const nav = document.getElementById('main-nav');
+    if (!nav) return;
+
+    let inactivityTimer: ReturnType<typeof setTimeout>;
+    let isHovering = false;
+
+    const hideNav = () => {
+      if (!isHovering) {
+        nav.classList.add('translate-y-[150%]', 'opacity-0');
+        nav.classList.remove('translate-y-0', 'opacity-100');
+      }
+    };
+
+    const showNav = () => {
+      nav.classList.remove('translate-y-[150%]', 'opacity-0');
+      nav.classList.add('translate-y-0', 'opacity-100');
+      resetInactivityTimer();
+    };
+
+    const resetInactivityTimer = () => {
+      clearTimeout(inactivityTimer);
+      inactivityTimer = setTimeout(hideNav, 3000); // Hide after 3 seconds of inactivity
+    };
+
+    // Initial timer start
+    resetInactivityTimer();
+
+    // Hide on scroll
+    window.addEventListener('scroll', () => {
+      hideNav();
+    }, { passive: true });
+
+    // Show on mouse move
+    window.addEventListener('mousemove', () => {
+      // Only trigger show if it's actually hidden or timer needs reset
+      // Checking classList is cheaper than force-removing every frame
+      if (nav.classList.contains('translate-y-[150%]')) {
+        showNav();
+      } else {
+        resetInactivityTimer();
+      }
+    }, { passive: true });
+
+    // Hover handling
+    nav.addEventListener('mouseenter', () => {
+      isHovering = true;
+      showNav();
+      clearTimeout(inactivityTimer);
+    });
+
+    nav.addEventListener('mouseleave', () => {
+      isHovering = false;
+      resetInactivityTimer();
+    });
+  });
+</script>

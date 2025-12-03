@@ -47,9 +47,10 @@ export default defineConfig({
       workbox: {
         globPatterns: ["**/*.{js,css,html,ico,png,svg,webp}"],
       },
-      // devOptions: {
-      //   enabled: true
-      // }
+      // Enable manifest/SW during `npm run dev` so base-aware URLs work locally
+      devOptions: {
+        enabled: true
+      }
     }),
   ],
 
