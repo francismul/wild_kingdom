@@ -1,90 +1,168 @@
 ---
 import { animals } from '../data/animals';
 
+const { pathname } = Astro.url;
 const base = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
   : import.meta.env.BASE_URL + '/';
+
+// Helper to check active state
+const isActive = (slug: string) => {
+    if (slug === '') {
+        return pathname === base || pathname === base.slice(0, -1);
+    }
+    return pathname.includes(slug);
+};
+
+const navItems = [
+    { name: 'Prologue', slug: '', number: '00' },
+    ...animals.map((a, i) => ({ name: a.name, slug: a.slug, number: `0${i + 1}` }))
+];
 ---
-<nav id="main-nav" class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ease-in-out translate-y-0 opacity-100">
-  <div class="flex items-center gap-2 px-4 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-full shadow-2xl">
-    <a 
-        href={base} 
-      class="p-2 rounded-full hover:bg-white/20 transition-colors duration-300 text-white/80 hover:text-white"
-      aria-label="Home"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-    </a>
-    <div class="w-px h-6 bg-white/20 mx-1"></div>
-    {animals.map(animal => (
-      <a 
-          href={`${base}${animal.slug}/`}
-        class="relative group p-2 rounded-full hover:bg-white/20 transition-colors duration-300"
-        aria-label={animal.name}
-      >
-        <span class="text-xs font-medium text-white/80 group-hover:text-white transition-colors">{animal.name.charAt(0)}</span>
-        <span class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 px-2 py-1 bg-black/80 text-white text-[10px] rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">
-          {animal.name}
-        </span>
-      </a>
-    ))}
-  </div>
+
+<nav class="fixed z-50 w-full md:w-auto md:h-screen pointer-events-none">
+    <!-- Mobile Header (Visible < md) -->
+    <div class="md:hidden fixed top-0 left-0 w-full p-6 flex justify-between items-center bg-gradient-to-b from-black/80 to-transparent pointer-events-auto">
+        <a href={base} class="text-xl font-heading font-bold text-white tracking-tighter">WK</a>
+        <button id="mobile-menu-btn" class="group flex flex-col gap-1.5 w-8">
+            <span class="w-full h-0.5 bg-white transition-transform group-hover:scale-x-75 origin-right"></span>
+            <span class="w-full h-0.5 bg-white transition-transform group-hover:scale-x-100"></span>
+            <span class="w-full h-0.5 bg-white transition-transform group-hover:scale-x-50 origin-right"></span>
+        </button>
+    </div>
+
+    <!-- Desktop Sidebar (Visible >= md) -->
+    <div id="desktop-sidebar" class="hidden md:flex flex-col justify-between h-full p-8 w-64 pointer-events-auto bg-gradient-to-r from-black/80 via-black/20 to-transparent backdrop-blur-[2px] transform transition-transform duration-500 ease-out">
+        <!-- Logo -->
+        <a href={base} class="block">
+            <span class="text-3xl font-heading font-black text-white tracking-tighter hover:text-amber-500 transition-colors">WK</span>
+        </a>
+
+        <!-- Chapter List -->
+        <div class="flex flex-col gap-6">
+            <span class="text-xs font-bold text-amber-500 uppercase tracking-[0.2em] mb-2 ml-1">Chapters</span>
+            {navItems.map((item) => (
+                <a 
+                    href={`${base}${item.slug}${item.slug ? '/' : ''}`}
+                    class:list={[
+                        "group flex items-center gap-4 transition-all duration-500 ease-out",
+                        isActive(item.slug) ? "translate-x-4 opacity-100" : "opacity-40 hover:opacity-100 hover:translate-x-2"
+                    ]}
+                >
+                    <span class:list={[
+                        "font-mono text-xs transition-colors",
+                        isActive(item.slug) ? "text-amber-500" : "text-white/50 group-hover:text-white"
+                    ]}>{item.number}</span>
+                    
+                    <span class:list={[
+                        "font-heading uppercase tracking-wider text-sm transition-colors relative",
+                        isActive(item.slug) ? "text-white" : "text-white/80 group-hover:text-white"
+                    ]}>
+                        {item.name}
+                        {isActive(item.slug) && (
+                            <span class="absolute -left-8 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-amber-500 rounded-full shadow-[0_0_10px_var(--color-amber-500)]"></span>
+                        )}
+                    </span>
+                </a>
+            ))}
+        </div>
+
+        <!-- Footer Info -->
+        <div class="text-[10px] text-white/30 font-mono">
+            <p>EST. 2025</p>
+            <p>WILD KINGDOM</p>
+        </div>
+    </div>
+
+    <!-- Mobile Overlay Menu (Hidden by default) -->
+    <div id="mobile-menu" class="fixed inset-0 bg-black/95 backdrop-blur-xl z-50 translate-x-full transition-transform duration-500 ease-in-out md:hidden pointer-events-auto flex flex-col justify-center p-8">
+        <button id="close-menu-btn" class="absolute top-6 right-6 text-white/50 hover:text-white p-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+        
+        <div class="flex flex-col gap-8">
+             {navItems.map((item) => (
+                <a 
+                    href={`${base}${item.slug}${item.slug ? '/' : ''}`}
+                    class="mobile-link flex items-baseline gap-6 group"
+                >
+                    <span class="font-mono text-sm text-amber-500/50 group-hover:text-amber-500 transition-colors">{item.number}</span>
+                    <span class="font-heading text-4xl font-bold text-white group-hover:text-amber-500 transition-colors">{item.name}</span>
+                </a>
+            ))}
+        </div>
+    </div>
 </nav>
 
 <script>
-  document.addEventListener('astro:page-load', () => {
-    const nav = document.getElementById('main-nav');
-    if (!nav) return;
+    document.addEventListener('astro:page-load', () => {
+        // Mobile Menu Logic
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const closeBtn = document.getElementById('close-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const links = document.querySelectorAll('.mobile-link');
 
-    let inactivityTimer: ReturnType<typeof setTimeout>;
-    let isHovering = false;
+        const toggleMenu = () => {
+            menu?.classList.toggle('translate-x-full');
+            document.body.classList.toggle('overflow-hidden');
+        };
 
-    const hideNav = () => {
-      if (!isHovering) {
-        nav.classList.add('translate-y-[150%]', 'opacity-0');
-        nav.classList.remove('translate-y-0', 'opacity-100');
-      }
-    };
+        menuBtn?.addEventListener('click', toggleMenu);
+        closeBtn?.addEventListener('click', toggleMenu);
+        
+        links.forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
 
-    const showNav = () => {
-      nav.classList.remove('translate-y-[150%]', 'opacity-0');
-      nav.classList.add('translate-y-0', 'opacity-100');
-      resetInactivityTimer();
-    };
+        // Desktop Sidebar Smart Visibility Logic
+        const sidebar = document.getElementById('desktop-sidebar');
+        if (sidebar) {
+            let inactivityTimer: ReturnType<typeof setTimeout>;
+            let isHoveringSidebar = false;
 
-    const resetInactivityTimer = () => {
-      clearTimeout(inactivityTimer);
-      inactivityTimer = setTimeout(hideNav, 3000); // Hide after 3 seconds of inactivity
-    };
+            const hideSidebar = () => {
+                if (!isHoveringSidebar) {
+                    sidebar.classList.add('-translate-x-full');
+                }
+            };
 
-    // Initial timer start
-    resetInactivityTimer();
+            const showSidebar = () => {
+                sidebar.classList.remove('-translate-x-full');
+            };
 
-    // Hide on scroll
-    window.addEventListener('scroll', () => {
-      hideNav();
-    }, { passive: true });
+            const resetTimer = () => {
+                clearTimeout(inactivityTimer);
+                // Only set hide timer if we are not hovering the sidebar
+                if (!isHoveringSidebar) {
+                    inactivityTimer = setTimeout(hideSidebar, 3000); // 3 seconds
+                }
+            };
 
-    // Show on mouse move
-    window.addEventListener('mousemove', () => {
-      // Only trigger show if it's actually hidden or timer needs reset
-      // Checking classList is cheaper than force-removing every frame
-      if (nav.classList.contains('translate-y-[150%]')) {
-        showNav();
-      } else {
-        resetInactivityTimer();
-      }
-    }, { passive: true });
+            // Initial state: Show then hide after delay
+            resetTimer();
 
-    // Hover handling
-    nav.addEventListener('mouseenter', () => {
-      isHovering = true;
-      showNav();
-      clearTimeout(inactivityTimer);
+            // 1. Show on mouse move anywhere
+            window.addEventListener('mousemove', () => {
+                showSidebar();
+                resetTimer();
+            }, { passive: true });
+
+            // 2. Hide immediately on scroll
+            window.addEventListener('scroll', () => {
+                hideSidebar();
+            }, { passive: true });
+
+            // 3. Hover handling (Prevent hiding when interacting with nav)
+            sidebar.addEventListener('mouseenter', () => {
+                isHoveringSidebar = true;
+                showSidebar();
+                clearTimeout(inactivityTimer); // Stop the auto-hide timer
+            });
+
+            sidebar.addEventListener('mouseleave', () => {
+                isHoveringSidebar = false;
+                resetTimer(); // Restart the auto-hide timer
+            });
+        }
     });
-
-    nav.addEventListener('mouseleave', () => {
-      isHovering = false;
-      resetInactivityTimer();
-    });
-  });
 </script>
