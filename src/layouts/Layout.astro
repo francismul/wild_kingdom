@@ -306,6 +306,9 @@ const base = import.meta.env.BASE_URL.endsWith("/")
           smoothWheel: true,
         });
 
+        // Expose lenis to window for global control (e.g. Navigation)
+        (window as any).lenis = lenis;
+
         // Synchronize Lenis with GSAP ScrollTrigger
         lenis.on("scroll", ScrollTrigger.update);
 
