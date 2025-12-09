@@ -1,17 +1,23 @@
 ---
 import { ViewTransitions } from "astro:transitions";
 import Navigation from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 
 interface Props {
   title: string;
   description?: string;
+  footerLinks?: { label: string; url: string }[];
 }
 
-const { title, description = "Wild Kingdom - The Big Five" } = Astro.props;
-const base = import.meta.env.BASE_URL.endsWith('/')
+const {
+  title,
+  description = "Wild Kingdom - The Big Five",
+  footerLinks,
+} = Astro.props;
+const base = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
-  : import.meta.env.BASE_URL + '/';
+  : import.meta.env.BASE_URL + "/";
 ---
 
 <!doctype html>
@@ -22,35 +28,25 @@ const base = import.meta.env.BASE_URL.endsWith('/')
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <link
-      rel="icon"
-      type="image/svg+xml"
-        href={`${base}favicon.svg`}
-    />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
     <link
       rel="icon"
       type="image/png"
-        href={`${base}favicon-96x96.png`}
+      href={`${base}favicon-96x96.png`}
       sizes="96x96"
     />
-    <link
-      rel="shortcut icon"
-        href={`${base}favicon.ico`}
-    />
+    <link rel="shortcut icon" href={`${base}favicon.ico`} />
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-        href={`${base}apple-touch-icon.png`}
+      href={`${base}apple-touch-icon.png`}
     />
     <meta name="apple-mobile-web-app-title" content="Wild Kingdom" />
-    <link
-      rel="manifest"
-        href={`${base}manifest.webmanifest`}
-    />
+    <link rel="manifest" href={`${base}manifest.webmanifest`} />
     <link
       rel="apple-touch-startup-image"
       media="screen and (device-width: 440px) and (device-height: 956px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"
-        href={`${base}splash_screens/iPhone_17_Pro_Max__iPhone_16_Pro_Max_landscape.png`}
+      href={`${base}splash_screens/iPhone_17_Pro_Max__iPhone_16_Pro_Max_landscape.png`}
     />
     <link
       rel="apple-touch-startup-image"
@@ -271,16 +267,27 @@ const base = import.meta.env.BASE_URL.endsWith('/')
   </head>
   <body>
     <Navigation />
-    <button 
-        id="back-to-top" 
-        aria-label="Back to Top" 
-        class="fixed bottom-8 right-8 z-40 p-4 bg-amber-500/80 backdrop-blur-sm text-black rounded-full shadow-lg shadow-amber-500/20 translate-y-24 opacity-0 transition-all duration-500 hover:bg-amber-400 hover:scale-110 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 focus:ring-offset-black cursor-pointer pointer-events-none border border-amber-400/50"
+    <button
+      id="back-to-top"
+      aria-label="Back to Top"
+      class="fixed bottom-8 right-8 z-40 p-4 bg-amber-500/80 backdrop-blur-sm text-black rounded-full shadow-lg shadow-amber-500/20 translate-y-24 opacity-0 transition-all duration-500 hover:bg-amber-400 hover:scale-110 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 focus:ring-offset-black cursor-pointer pointer-events-none border border-amber-400/50"
     >
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"><path d="m18 15-6-6-6 6"></path></svg
+      >
     </button>
     <main class="relative z-10">
       <slot />
     </main>
+    <Footer links={footerLinks} />
 
     <script>
       import Lenis from "lenis";
@@ -318,23 +325,42 @@ const base = import.meta.env.BASE_URL.endsWith('/')
         ScrollTrigger.refresh();
 
         // Back to Top Logic
-        const backToTopBtn = document.getElementById('back-to-top');
+        const backToTopBtn = document.getElementById("back-to-top");
         if (backToTopBtn) {
-            const toggleBackToTop = () => {
-                if (window.scrollY > 500) {
-                    backToTopBtn.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
-                    backToTopBtn.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
-                } else {
-                    backToTopBtn.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
-                    backToTopBtn.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
-                }
-            };
+          const toggleBackToTop = () => {
+            if (window.scrollY > 500) {
+              backToTopBtn.classList.remove(
+                "translate-y-24",
+                "opacity-0",
+                "pointer-events-none"
+              );
+              backToTopBtn.classList.add(
+                "translate-y-0",
+                "opacity-100",
+                "pointer-events-auto"
+              );
+            } else {
+              backToTopBtn.classList.add(
+                "translate-y-24",
+                "opacity-0",
+                "pointer-events-none"
+              );
+              backToTopBtn.classList.remove(
+                "translate-y-0",
+                "opacity-100",
+                "pointer-events-auto"
+              );
+            }
+          };
 
-            window.addEventListener('scroll', toggleBackToTop, { passive: true });
-            
-            backToTopBtn.addEventListener('click', () => {
-                lenis.scrollTo(0, { duration: 1.5, easing: (t) => 1 - Math.pow(1 - t, 3) }); // Use Lenis for smooth scroll
-            });
+          window.addEventListener("scroll", toggleBackToTop, { passive: true });
+
+          backToTopBtn.addEventListener("click", () => {
+            lenis.scrollTo(0, {
+              duration: 1.5,
+              easing: (t) => 1 - Math.pow(1 - t, 3),
+            }); // Use Lenis for smooth scroll
+          });
         }
       });
 

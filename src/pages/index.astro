@@ -8,245 +8,325 @@ const leopard = animals.find((a) => a.slug === "leopard")!;
 const rhino = animals.find((a) => a.slug === "rhino")!;
 const elephant = animals.find((a) => a.slug === "elephant")!;
 const buffalo = animals.find((a) => a.slug === "buffalo")!;
+
+const generalLinks = [
+  { label: "African Wildlife Foundation", url: "https://www.awf.org/" },
+  {
+    label: "Kruger National Park",
+    url: "https://www.sanparks.org/parks/kruger",
+  },
+  { label: "WWF - Africa", url: "https://www.worldwildlife.org/places/africa" },
+];
 ---
 
-<Layout title="Wild Kingdom - The Big Five">
-    <div class="min-h-screen bg-black text-white selection:bg-amber-500/30">
-        <!-- Hero Text -->
-        <section
-            id="hero-section"
-            class="h-[80vh] flex flex-col justify-center items-center text-center px-4 relative overflow-hidden perspective-1000"
-        >
-            <!-- Interactive Background Particles -->
-            <div id="particles-container" class="absolute inset-0 overflow-hidden pointer-events-none z-0">
-                <!-- Particles will be injected here by JS -->
-            </div>
+<Layout title="Wild Kingdom - The Big Five" footerLinks={generalLinks}>
+  <div class="min-h-screen bg-black text-white selection:bg-amber-500/30">
+    <!-- Hero Text -->
+    <section
+      id="hero-section"
+      class="h-[80vh] flex flex-col justify-center items-center text-center px-4 relative overflow-hidden perspective-1000"
+    >
+      <!-- Interactive Background Particles -->
+      <div
+        id="particles-container"
+        class="absolute inset-0 overflow-hidden pointer-events-none z-0"
+      >
+        <!-- Particles will be injected here by JS -->
+      </div>
 
+      <div
+        class="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops))] from-amber-900/20 via-black to-black -z-10"
+      >
+      </div>
+
+      <h1
+        id="hero-title"
+        class="hero-title text-7xl md:text-9xl lg:text-[12rem] font-heading font-black tracking-tighter mb-12 overflow-hidden leading-none relative z-10 will-change-transform"
+      >
+        <div class="overflow-hidden">
+          <span class="inline-block transform translate-y-full">WILD</span>
+        </div>
+        <div class="overflow-hidden">
+          <span
+            class="inline-block transform translate-y-full text-transparent bg-clip-text bg-linear-to-r from-amber-500 to-orange-600"
+            >KINGDOM</span
+          >
+        </div>
+      </h1>
+      <p
+        class="hero-subtitle text-lg md:text-xl text-gray-400 max-w-xl mx-auto opacity-0 translate-y-4 font-light relative z-10"
+      >
+        Experience the majesty of Africa's Big Five through an immersive digital
+        safari.
+      </p>
+    </section>
+
+    <!-- Introduction / Data Section -->
+    <section
+      class="intro-section px-6 py-24 max-w-6xl mx-auto relative z-10 opacity-0 translate-y-8"
+    >
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+        <div class="space-y-8">
+          <h2
+            class="text-3xl md:text-5xl font-heading font-bold text-white leading-tight"
+          >
+            Beyond the <span class="text-amber-500">Legend</span>
+          </h2>
+          <p class="text-lg text-gray-300 font-light leading-relaxed">
+            The "Big Five" was originally a term coined by big-game hunters for
+            the five most difficult animals in Africa to hunt on foot. Today, it
+            represents the pinnacle of wildlife observation—a testament to the
+            raw power and beauty of the African continent.
+          </p>
+          <div class="flex gap-4">
             <div
-                class="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops))] from-amber-900/20 via-black to-black -z-10"
+              class="bg-white/5 backdrop-blur-sm border border-white/10 p-4 rounded-2xl flex-1"
             >
+              <span
+                class="block text-3xl font-heading font-bold text-amber-500 mb-1"
+                >5</span
+              >
+              <span class="text-xs text-gray-400 uppercase tracking-wider"
+                >Iconic Species</span
+              >
             </div>
-
-            <h1
-                id="hero-title"
-                class="hero-title text-7xl md:text-9xl lg:text-[12rem] font-heading font-black tracking-tighter mb-12 overflow-hidden leading-none relative z-10 will-change-transform"
-            >
-                <div class="overflow-hidden">
-                    <span class="inline-block transform translate-y-full"
-                        >WILD</span>
-                </div>
-                <div class="overflow-hidden">
-                    <span
-                        class="inline-block transform translate-y-full text-transparent bg-clip-text bg-linear-to-r from-amber-500 to-orange-600"
-                        >KINGDOM</span>
-                </div>
-            </h1>
-            <p
-                class="hero-subtitle text-lg md:text-xl text-gray-400 max-w-xl mx-auto opacity-0 translate-y-4 font-light relative z-10"
-            >
-                Experience the majesty of Africa's Big Five through an immersive
-                digital safari.
-            </p>
-        </section>
-
-        <!-- Introduction / Data Section -->
-        <section class="intro-section px-6 py-24 max-w-6xl mx-auto relative z-10 opacity-0 translate-y-8">
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-                <div class="space-y-8">
-                    <h2 class="text-3xl md:text-5xl font-heading font-bold text-white leading-tight">
-                        Beyond the <span class="text-amber-500">Legend</span>
-                    </h2>
-                    <p class="text-lg text-gray-300 font-light leading-relaxed">
-                        The "Big Five" was originally a term coined by big-game hunters for the five most difficult animals in Africa to hunt on foot. Today, it represents the pinnacle of wildlife observation—a testament to the raw power and beauty of the African continent.
-                    </p>
-                    <div class="flex gap-4">
-                         <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-4 rounded-2xl flex-1">
-                            <span class="block text-3xl font-heading font-bold text-amber-500 mb-1">5</span>
-                            <span class="text-xs text-gray-400 uppercase tracking-wider">Iconic Species</span>
-                         </div>
-                         <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-4 rounded-2xl flex-1">
-                            <span class="block text-3xl font-heading font-bold text-amber-500 mb-1">Vulnerable</span>
-                            <span class="text-xs text-gray-400 uppercase tracking-wider">Conservation Status</span>
-                         </div>
-                    </div>
-                </div>
-                <div class="relative">
-                    <div class="absolute -inset-4 bg-amber-500/20 blur-3xl rounded-full opacity-50"></div>
-                    <div class="relative bg-gray-900/50 border border-white/10 p-8 rounded-3xl backdrop-blur-md">
-                        <h3 class="text-xl font-heading font-bold text-white mb-6">Ecosystem Impact</h3>
-                        <ul class="space-y-4">
-                            <li class="flex items-start gap-4">
-                                <span class="bg-amber-500/20 text-amber-500 p-2 rounded-lg mt-1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
-                                </span>
-                                <div>
-                                    <span class="block text-white font-medium">Keystone Species</span>
-                                    <span class="text-sm text-gray-400">Elephants shape the landscape by uprooting trees, creating grasslands for other species.</span>
-                                </div>
-                            </li>
-                             <li class="flex items-start gap-4">
-                                <span class="bg-amber-500/20 text-amber-500 p-2 rounded-lg mt-1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.3 10a.7.7 0 0 1-.626-1.079L11.4 3a.7.7 0 0 1 1.198-.043L16.3 8.9a.7.7 0 0 1-.572 1.1Z"/><rect x="8" y="10" width="8" height="10" rx="1"/><path d="M3 22h18"/></svg>
-                                </span>
-                                <div>
-                                    <span class="block text-white font-medium">Apex Predators</span>
-                                    <span class="text-sm text-gray-400">Lions and leopards regulate prey populations, maintaining ecological balance.</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Bento Grid -->
-        <section class="px-4 pb-32 pt-12 max-w-[1600px] mx-auto">
             <div
-                class="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-auto md:auto-rows-[300px]"
+              class="bg-white/5 backdrop-blur-sm border border-white/10 p-4 rounded-2xl flex-1"
             >
-                <!-- Lion (Large Feature) -->
-                <div class="md:col-span-8 md:row-span-2 h-[600px] md:h-full">
-                    <Card animal={lion} class="h-full" />
-                </div>
-
-                <!-- Leopard -->
-                <div class="md:col-span-4 md:row-span-1 h-[400px] md:h-full">
-                    <Card animal={leopard} class="h-full" />
-                </div>
-
-                <!-- Rhino -->
-                <div class="md:col-span-4 md:row-span-1 h-[400px] md:h-full">
-                    <Card animal={rhino} class="h-full" />
-                </div>
-
-                <!-- Elephant -->
-                <div class="md:col-span-6 md:row-span-2 h-[500px] md:h-full">
-                    <Card animal={elephant} class="h-full" />
-                </div>
-
-                <!-- Buffalo -->
-                <div class="md:col-span-6 md:row-span-2 h-[500px] md:h-full">
-                    <Card animal={buffalo} class="h-full" />
-                </div>
+              <span
+                class="block text-3xl font-heading font-bold text-amber-500 mb-1"
+                >Vulnerable</span
+              >
+              <span class="text-xs text-gray-400 uppercase tracking-wider"
+                >Conservation Status</span
+              >
             </div>
-        </section>
-    </div>
+          </div>
+        </div>
+        <div class="relative">
+          <div
+            class="absolute -inset-4 bg-amber-500/20 blur-3xl rounded-full opacity-50"
+          >
+          </div>
+          <div
+            class="relative bg-gray-900/50 border border-white/10 p-8 rounded-3xl backdrop-blur-md"
+          >
+            <h3 class="text-xl font-heading font-bold text-white mb-6">
+              Ecosystem Impact
+            </h3>
+            <ul class="space-y-4">
+              <li class="flex items-start gap-4">
+                <span
+                  class="bg-amber-500/20 text-amber-500 p-2 rounded-lg mt-1"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    ><circle cx="12" cy="12" r="10"></circle><path
+                      d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"
+                    ></path><path d="M2 12h20"></path></svg
+                  >
+                </span>
+                <div>
+                  <span class="block text-white font-medium"
+                    >Keystone Species</span
+                  >
+                  <span class="text-sm text-gray-400"
+                    >Elephants shape the landscape by uprooting trees, creating
+                    grasslands for other species.</span
+                  >
+                </div>
+              </li>
+              <li class="flex items-start gap-4">
+                <span
+                  class="bg-amber-500/20 text-amber-500 p-2 rounded-lg mt-1"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    ><path
+                      d="M8.3 10a.7.7 0 0 1-.626-1.079L11.4 3a.7.7 0 0 1 1.198-.043L16.3 8.9a.7.7 0 0 1-.572 1.1Z"
+                    ></path><rect x="8" y="10" width="8" height="10" rx="1"
+                    ></rect><path d="M3 22h18"></path></svg
+                  >
+                </span>
+                <div>
+                  <span class="block text-white font-medium"
+                    >Apex Predators</span
+                  >
+                  <span class="text-sm text-gray-400"
+                    >Lions and leopards regulate prey populations, maintaining
+                    ecological balance.</span
+                  >
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <script>
-        import { gsap } from "gsap";
-        import { ScrollTrigger } from "gsap/ScrollTrigger";
+    <!-- Bento Grid -->
+    <section class="px-4 pb-32 pt-12 max-w-[1600px] mx-auto">
+      <div
+        class="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-auto md:auto-rows-[300px]"
+      >
+        <!-- Lion (Large Feature) -->
+        <div class="md:col-span-8 md:row-span-2 h-[600px] md:h-full">
+          <Card animal={lion} class="h-full" />
+        </div>
 
-        gsap.registerPlugin(ScrollTrigger);
+        <!-- Leopard -->
+        <div class="md:col-span-4 md:row-span-1 h-[400px] md:h-full">
+          <Card animal={leopard} class="h-full" />
+        </div>
 
-        document.addEventListener("astro:page-load", () => {
-            const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+        <!-- Rhino -->
+        <div class="md:col-span-4 md:row-span-1 h-[400px] md:h-full">
+          <Card animal={rhino} class="h-full" />
+        </div>
 
-            tl.to(".hero-title span", {
-                y: 0,
-                duration: 1.5,
-                stagger: 0.2,
-            })
-            .to(
-                ".hero-subtitle",
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1,
-                },
-                "-=1",
-            );
+        <!-- Elephant -->
+        <div class="md:col-span-6 md:row-span-2 h-[500px] md:h-full">
+          <Card animal={elephant} class="h-full" />
+        </div>
 
-            // Animate the Intro Section on Scroll
-            gsap.to(".intro-section", {
-                scrollTrigger: {
-                    trigger: ".intro-section",
-                    start: "top 80%",
-                },
-                y: 0,
-                opacity: 1,
-                duration: 1,
-                ease: "power2.out"
+        <!-- Buffalo -->
+        <div class="md:col-span-6 md:row-span-2 h-[500px] md:h-full">
+          <Card animal={buffalo} class="h-full" />
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    document.addEventListener("astro:page-load", () => {
+      const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+
+      tl.to(".hero-title span", {
+        y: 0,
+        duration: 1.5,
+        stagger: 0.2,
+      }).to(
+        ".hero-subtitle",
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+        },
+        "-=1"
+      );
+
+      // Animate the Intro Section on Scroll
+      gsap.to(".intro-section", {
+        scrollTrigger: {
+          trigger: ".intro-section",
+          start: "top 80%",
+        },
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "power2.out",
+      });
+
+      // Animate Cards on Scroll (batching them might be better, but using existing logic adapted)
+      gsap.from(".animal-card", {
+        scrollTrigger: {
+          trigger: ".animal-card", // Trigger when the first card comes into view
+          start: "top 85%",
+        },
+        y: 100,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.1,
+        ease: "power2.out",
+        clearProps: "all",
+      });
+
+      // Antigravity Mouse Effect & Particles
+      const heroSection = document.getElementById("hero-section");
+      const heroTitle = document.getElementById("hero-title");
+      const particlesContainer = document.getElementById("particles-container");
+
+      if (heroSection && heroTitle && particlesContainer) {
+        // 1. Create Particles
+        const particleCount = 20;
+        const particles: HTMLDivElement[] = [];
+
+        for (let i = 0; i < particleCount; i++) {
+          const p = document.createElement("div");
+          const size = Math.random() * 4 + 1;
+          p.classList.add("absolute", "rounded-full", "bg-amber-500/20");
+          p.style.width = `${size}px`;
+          p.style.height = `${size}px`;
+          p.style.left = `${Math.random() * 100}%`;
+          p.style.top = `${Math.random() * 100}%`;
+          // Random depth for parallax (0.1 to 0.5)
+          p.dataset.depth = (Math.random() * 0.4 + 0.1).toString();
+          particlesContainer.appendChild(p);
+          particles.push(p);
+        }
+
+        // 2. Mouse Move Logic
+        const handleMouseMove = (e: MouseEvent) => {
+          const { clientX, clientY } = e;
+          const { innerWidth, innerHeight } = window;
+
+          // Normalized coordinates (-1 to 1)
+          const xNorm = (clientX / innerWidth) * 2 - 1;
+          const yNorm = (clientY / innerHeight) * 2 - 1;
+
+          // Magnetic Text Tilt
+          gsap.to(heroTitle, {
+            rotationY: xNorm * 5, // Max 5deg rotation
+            rotationX: -yNorm * 5,
+            x: xNorm * 20, // Slight translation
+            y: yNorm * 20,
+            duration: 1,
+            ease: "power2.out",
+          });
+
+          // Particle Repulsion/Flow
+          particles.forEach((p) => {
+            const depth = parseFloat(p.dataset.depth || "0.1");
+            const moveX = xNorm * -50 * depth; // Move opposite to mouse
+            const moveY = yNorm * -50 * depth;
+
+            gsap.to(p, {
+              x: moveX,
+              y: moveY,
+              duration: 1.5,
+              ease: "power2.out",
             });
+          });
+        };
 
-            // Animate Cards on Scroll (batching them might be better, but using existing logic adapted)
-             gsap.from(".animal-card", {
-                scrollTrigger: {
-                    trigger: ".animal-card", // Trigger when the first card comes into view
-                    start: "top 85%",
-                },
-                y: 100,
-                opacity: 0,
-                duration: 1,
-                stagger: 0.1,
-                ease: "power2.out",
-                clearProps: "all",
-            });
+        window.addEventListener("mousemove", handleMouseMove);
 
-            // Antigravity Mouse Effect & Particles
-            const heroSection = document.getElementById('hero-section');
-            const heroTitle = document.getElementById('hero-title');
-            const particlesContainer = document.getElementById('particles-container');
-
-            if (heroSection && heroTitle && particlesContainer) {
-                // 1. Create Particles
-                const particleCount = 20;
-                const particles: HTMLDivElement[] = [];
-
-                for (let i = 0; i < particleCount; i++) {
-                    const p = document.createElement('div');
-                    const size = Math.random() * 4 + 1;
-                    p.classList.add('absolute', 'rounded-full', 'bg-amber-500/20');
-                    p.style.width = `${size}px`;
-                    p.style.height = `${size}px`;
-                    p.style.left = `${Math.random() * 100}%`;
-                    p.style.top = `${Math.random() * 100}%`;
-                    // Random depth for parallax (0.1 to 0.5)
-                    p.dataset.depth = (Math.random() * 0.4 + 0.1).toString();
-                    particlesContainer.appendChild(p);
-                    particles.push(p);
-                }
-
-                // 2. Mouse Move Logic
-                const handleMouseMove = (e: MouseEvent) => {
-                    const { clientX, clientY } = e;
-                    const { innerWidth, innerHeight } = window;
-                    
-                    // Normalized coordinates (-1 to 1)
-                    const xNorm = (clientX / innerWidth) * 2 - 1;
-                    const yNorm = (clientY / innerHeight) * 2 - 1;
-
-                    // Magnetic Text Tilt
-                    gsap.to(heroTitle, {
-                        rotationY: xNorm * 5, // Max 5deg rotation
-                        rotationX: -yNorm * 5,
-                        x: xNorm * 20, // Slight translation
-                        y: yNorm * 20,
-                        duration: 1,
-                        ease: "power2.out"
-                    });
-
-                    // Particle Repulsion/Flow
-                    particles.forEach(p => {
-                        const depth = parseFloat(p.dataset.depth || '0.1');
-                        const moveX = xNorm * -50 * depth; // Move opposite to mouse
-                        const moveY = yNorm * -50 * depth;
-                        
-                        gsap.to(p, {
-                            x: moveX,
-                            y: moveY,
-                            duration: 1.5,
-                            ease: "power2.out"
-                        });
-                    });
-                };
-
-                window.addEventListener('mousemove', handleMouseMove);
-
-                // Cleanup on page leave (optional in Astro SPA mode but good practice)
-                // Since this is inside astro:page-load, it runs once per nav. 
-                // Ideally, we should remove listener on swap, but for now simple adding is ok 
-                // as long as we don't duplicate logic. 
-            }
-        });
-    </script>
+        // Cleanup on page leave (optional in Astro SPA mode but good practice)
+        // Since this is inside astro:page-load, it runs once per nav.
+        // Ideally, we should remove listener on swap, but for now simple adding is ok
+        // as long as we don't duplicate logic.
+      }
+    });
+  </script>
 </Layout>
