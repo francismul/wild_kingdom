@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "build:obfuscated": "OBFUSCATE=true astro build",
+    "build:obfuscated": "cross-env OBFUSCATE=true astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@vite-pwa/astro": "^1.2.0",
+    "cross-env": "^10.1.0",
     "javascript-obfuscator": "^4.2.0",
     "vite-plugin-javascript-obfuscator": "^3.1.0"
   }

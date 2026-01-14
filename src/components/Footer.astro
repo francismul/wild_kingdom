@@ -12,21 +12,6 @@ const currentYear = new Date().getFullYear();
 >
   <div class="max-w-7xl mx-auto px-6 relative z-10">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-      <!-- Brand & Copyright -->
-      <div class="space-y-4 text-center md:text-left">
-        <h2
-          class="text-2xl font-heading font-black text-white tracking-tighter"
-        >
-          WILD <span class="text-amber-500">KINGDOM</span>
-        </h2>
-        <p class="text-sm font-light text-gray-500">
-          Celebrating the majesty of Africa's wildlife.
-        </p>
-        <p class="text-xs text-gray-600">
-          &copy; {currentYear} Wild Kingdom. All rights reserved.
-        </p>
-      </div>
-
       <!-- Links -->
       <div class="flex flex-col items-center md:items-end space-y-4">
         {
@@ -52,6 +37,21 @@ const currentYear = new Date().getFullYear();
             </>
           )
         }
+      </div>
+
+      <!-- Brand & Copyright -->
+      <div class="space-y-4 text-center md:text-left">
+        <h2
+          class="text-2xl font-heading font-black text-white tracking-tighter"
+        >
+          WILD <span class="text-amber-500">KINGDOM</span>
+        </h2>
+        <p class="text-sm font-light text-gray-500">
+          Celebrating the majesty of Africa's wildlife.
+        </p>
+        <p class="text-xs text-gray-600">
+          &copy; {currentYear} Wild Kingdom. All rights reserved.
+        </p>
       </div>
     </div>
   </div>

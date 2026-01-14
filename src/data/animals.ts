@@ -64,7 +64,7 @@ export const animals: Animal[] = [
         "Under the scorching African sun, the pride rested in the shade of an acacia tree. The golden grass shimmered in the heat. A young cub, full of energy, tugged at the tail of the resting male, who let out a low, rumbling grumble but didn't move. It was the dry season, and water was scarce. Tonight, the lionesses would embark on a hunt that would test their endurance and coordination, ensuring the survival of the pride for another week. As the sun dipped below the horizon, painting the sky in hues of orange and purple, the queens of the savanna rose, their eyes fixed on a distant herd of wildebeest.",
     },
     images: {
-      hero: "https://images.pexels.com/photos/1598377/pexels-photo-1598377.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      hero: "https://images.pexels.com/photos/26052408/pexels-photo-26052408.jpeg",
       gallery: [
         "https://images.pexels.com/photos/1912176/pexels-photo-1912176.jpeg",
         "https://images.pexels.com/photos/40803/lion-animal-predator-big-cat-40803.jpeg",
@@ -121,7 +121,7 @@ export const animals: Animal[] = [
         "High in the branches of a marula tree, a leopard draped herself over a sturdy limb, her spotted coat blending seamlessly with the dappled sunlight filtering through the leaves. Below, a herd of impala grazed, unaware of the danger lurking above. She had been watching them for hours, patient as a stone. This was her domain, a vertical world where she was the undisputed queen. With a silent fluidity that defied gravity, she began her descent, moving not like an animal, but like a shadow detaching itself from the bark.",
     },
     images: {
-      hero: "https://images.pexels.com/photos/1642068/pexels-photo-1642068.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      hero: "https://images.pexels.com/photos/1642069/pexels-photo-1642069.jpeg",
       gallery: [
         "https://images.pexels.com/photos/1316297/pexels-photo-1316297.jpeg",
         "https://images.pexels.com/photos/20449623/pexels-photo-20449623.jpeg",
@@ -140,10 +140,6 @@ export const animals: Animal[] = [
       {
         label: "African Wildlife Foundation",
         url: "https://www.awf.org/wildlife-conservation/leopard",
-      },
-      {
-        label: "WWF - Leopard",
-        url: "https://www.worldwildlife.org/species/leopard",
       },
     ],
   },
@@ -181,7 +177,7 @@ export const animals: Animal[] = [
         "The old bull rhino stood like a prehistoric monument against the rising sun. His skin, thick and folded like armor plating, bore the scars of many battles. He was the guardian of this watering hole, a silent sentinel in a changing world. A young calf peered timidly from behind its mother nearby. The bull snorted, a puff of dust rising from the dry earth, and turned his massive head towards the wind, checking for the scent of danger. In his presence, even the lions kept their distance.",
     },
     images: {
-      hero: "https://images.pexels.com/photos/624063/pexels-photo-624063.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      hero: "https://images.pexels.com/photos/4005190/pexels-photo-4005190.jpeg",
       gallery: [
         "https://images.pexels.com/photos/30705488/pexels-photo-30705488.jpeg",
         "https://images.pexels.com/photos/4394471/pexels-photo-4394471.jpeg",
@@ -238,7 +234,7 @@ export const animals: Animal[] = [
         "The matriarch paused, her trunk raised high, testing the breeze. The dry season had been harsh, and the waterholes were turning to mud. Behind her, the herd waited, trusting her ancient memory. She remembered a hidden spring from her childhood, a place that never ran dry. With a reassuring rumble to her calf, she signaled the move. The journey would be long and dusty, but her wisdom was their map. They walked in a single file, giant grey ghosts moving silently through the twilight.",
     },
     images: {
-      hero: "https://images.pexels.com/photos/1054666/pexels-photo-1054666.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      hero: "https://images.pexels.com/photos/4577523/pexels-photo-4577523.jpeg",
       gallery: [
         "https://images.pexels.com/photos/66898/elephant-cub-tsavo-kenya-66898.jpeg",
         "https://images.pexels.com/photos/133394/pexels-photo-133394.jpeg",
@@ -298,7 +294,7 @@ export const animals: Animal[] = [
         "The herd was a sea of black horns and twitching ears, a thousand strong. They grazed peacefully near the riverbank until the wind shifted, carrying the scent of lion. In an instant, the mood changed. The bulls moved to the perimeter, forming an impenetrable wall of muscle and bone. They didn't run. They turned to face the threat. A low bellow started from the center, growing into a roar as the herd stamped the ground. Today, the hunters would become the hunted.",
     },
     images: {
-      hero: "https://images.pexels.com/photos/32617559/pexels-photo-32617559.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      hero: "https://images.pexels.com/photos/618960/pexels-photo-618960.jpeg",
       gallery: [
         "https://images.pexels.com/photos/5127241/pexels-photo-5127241.jpeg",
         "https://images.pexels.com/photos/6551950/pexels-photo-6551950.jpeg",
@@ -316,11 +312,7 @@ export const animals: Animal[] = [
       },
       {
         label: "African Wildlife Foundation",
-        url: "https://www.awf.org/wildlife-conservation/cape-buffalo",
-      },
-      {
-        label: "Kruger National Park",
-        url: "https://www.krugerpark.co.za/africa_cape_buffalo.html",
+        url: "https://www.awf.org/wildlife-conservation/african-buffalo",
       },
     ],
   },

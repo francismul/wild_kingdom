@@ -19,8 +19,8 @@ Live site: `https://francismul.github.io/wild_kingdom/`
 ## Local Development
 
 ```zsh
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
 Open `http://localhost:4321`.
@@ -28,9 +28,9 @@ Open `http://localhost:4321`.
 ## Build
 
 ```zsh
-npm run build
+pnpm run build
 # or, to obfuscate client JS in production builds
-npm run build:obfuscated
+pnpm run build:obfuscated
 ```
 
 Output is written to `dist/`.
@@ -38,11 +38,13 @@ Output is written to `dist/`.
 ## Deploy to GitHub Pages
 
 This repo ships with an Actions workflow at `.github/workflows/deploy.yml` that:
+
 - Installs dependencies and builds the site
 - Uploads `dist/` as the Pages artifact
 - Deploys to GitHub Pages
 
 Steps to enable:
+
 1. Push to `main` (or run the workflow manually).
 2. In GitHub → Repository → Settings → Pages, set Source to “GitHub Actions”.
 3. The site publishes to `https://francismul.github.io/wild_kingdom/`.
@@ -50,6 +52,7 @@ Steps to enable:
 ### Path Base and Site
 
 This project is configured for a repository-based GitHub Pages URL:
+
 - `astro.config.mjs` sets `site: 'https://francismul.github.io'` and `base: '/wild_kingdom'`.
 - PWA `manifest` uses `scope` and `start_url` of `/wild_kingdom/`.
 - Public asset links in layout use `import.meta.env.BASE_URL` so icons and splash screens resolve under the base from any route.
@@ -74,6 +77,7 @@ src/
 ```
 
 Key files:
+
 - `src/layouts/Layout.astro`: global head tags, icons, splash screens, router transitions.
 - `src/pages/*.astro`: top-level routes (including dynamic `[animal].astro`).
 - `astro.config.mjs`: integrations, PWA config, and GitHub Pages base/site.
@@ -86,10 +90,10 @@ Key files:
 
 ## Useful Commands
 
-- `npm run dev`: start the dev server
-- `npm run build`: build to `dist/`
-- `npm run preview`: preview the production build
-- `npm run build:obfuscated`: production build with JS obfuscation
+- `pnpm run dev`: start the dev server
+- `pnpm run build`: build to `dist/`
+- `pnpm run preview`: preview the production build
+- `pnpm run build:obfuscated`: production build with JS obfuscation
 
 ## License
 
