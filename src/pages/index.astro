@@ -22,48 +22,10 @@ const generalLinks = [
 <Layout title="Wild Kingdom - The Big Five" footerLinks={generalLinks}>
   <div class="min-h-screen bg-black text-white selection:bg-amber-500/30">
     <!-- Hero Text -->
-    <section
-      id="hero-section"
-      class="h-[80vh] flex flex-col justify-center items-center text-center px-4 relative overflow-hidden perspective-1000"
-    >
-      <!-- Interactive Background Particles -->
-      <div
-        id="particles-container"
-        class="absolute inset-0 overflow-hidden pointer-events-none z-0"
-      >
-        <!-- Particles will be injected here by JS -->
-      </div>
-
-      <div
-        class="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops))] from-amber-900/20 via-black to-black -z-10"
-      >
-      </div>
-
-      <h1
-        id="hero-title"
-        class="hero-title text-7xl md:text-9xl lg:text-[12rem] font-heading font-black tracking-tighter mb-12 overflow-hidden leading-none relative z-10 will-change-transform"
-      >
-        <div class="overflow-hidden">
-          <span class="inline-block transform translate-y-full">WILD</span>
-        </div>
-        <div class="overflow-hidden">
-          <span
-            class="inline-block transform translate-y-full text-transparent bg-clip-text bg-linear-to-r from-amber-500 to-orange-600"
-            >KINGDOM</span
-          >
-        </div>
-      </h1>
-      <p
-        class="hero-subtitle text-lg md:text-xl text-gray-400 max-w-xl mx-auto opacity-0 translate-y-4 font-light relative z-10"
-      >
-        Experience the majesty of Africa's Big Five through an immersive digital
-        safari.
-      </p>
-    </section>
 
     <!-- Introduction / Data Section -->
     <section
-      class="intro-section px-6 py-24 max-w-6xl mx-auto relative z-10 opacity-0 translate-y-8"
+      class="intro-section px-6 py-24 max-w-6xl mx-auto relative z-10 opacity-0 translate-y-8 min-h-screen"
     >
       <div class="grid md:grid-cols-2 gap-16 items-center">
         <div class="space-y-8">
@@ -179,34 +141,41 @@ const generalLinks = [
         </div>
       </div>
     </section>
-
     <!-- Bento Grid -->
-    <section class="px-4 pb-32 pt-12 max-w-[1600px] mx-auto">
-      <div
-        class="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-auto md:auto-rows-[300px]"
-      >
+    <section class="px-4 pb-32 pt-12 max-w-[1600px] mx-auto min-h-screen">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 h-[800px] md:h-[600px]">
         <!-- Lion (Large Feature) -->
-        <div class="md:col-span-8 md:row-span-2 h-[600px] md:h-full">
+        <div
+          class="relative overflow-hidden rounded-xl group border border-white/10 col-span-2 row-span-2"
+        >
           <Card animal={lion} class="h-full" />
         </div>
 
         <!-- Leopard -->
-        <div class="md:col-span-4 md:row-span-1 h-[400px] md:h-full">
+        <div
+          class="relative overflow-hidden rounded-xl group border border-white/10 col-span-1 row-span-1"
+        >
           <Card animal={leopard} class="h-full" />
         </div>
 
         <!-- Rhino -->
-        <div class="md:col-span-4 md:row-span-1 h-[400px] md:h-full">
+        <div
+          class="relative overflow-hidden rounded-xl group border border-white/10 col-span-1 row-span-1"
+        >
           <Card animal={rhino} class="h-full" />
         </div>
 
         <!-- Elephant -->
-        <div class="md:col-span-6 md:row-span-2 h-[500px] md:h-full">
+        <div
+          class="relative overflow-hidden rounded-xl group border border-white/10 col-span-1 row-span-1"
+        >
           <Card animal={elephant} class="h-full" />
         </div>
 
         <!-- Buffalo -->
-        <div class="md:col-span-6 md:row-span-2 h-[500px] md:h-full">
+        <div
+          class="relative overflow-hidden rounded-xl group border border-white/10 col-span-1 row-span-1"
+        >
           <Card animal={buffalo} class="h-full" />
         </div>
       </div>
